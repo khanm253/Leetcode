@@ -201,11 +201,62 @@ public class Main{
         return -1;
 
     } 
+
+    public static int[] twoSums2(int[] nums, int l, int r, int target){ //O(N) both time and space
+        int[] result = new int[2];
+        HashMap<Integer, Integer> map = new HashMap<>();
+        for(int i = l; i <= r; i++){
+            int difference = target - nums[i];
+            if(map.containsKey(difference)){
+                result[0] = i;
+                result[1] = map.get(difference);
+                return result;
+            }    
+            map.put(nums[i], i);
+        }
+
+        return new int[]{-1, -1};
+    }
+
+    public static List<List<Integer>> threeSum(int[] nums){ //O(N^2) and O(1)
+        ArrayList<List<Integer>> result = new ArrayList<List<Integer>>();        
+        if(nums == null || nums.length < 3) return result;
+        Arrays.sort(nums);
+        for(int i = 0; i < nums.length - 2; i++){
+            if(i-1 >=0 && nums[i] != nums[i-1]){
+                int left = i + 1;
+                int right = nums.length -1;
+                while(left < right){
+                    int sum = nums[i] + nums[left] + nums[right];
+                    if(sum == 0){
+                        List<Integer> lst = new ArrayList<Integer>();
+                        lst.add(nums[i]);
+                        lst.add(nums[left]);
+                        lst.add(nums[right]);
+                        result.add(lst);
+                        while(nums[left] == nums[left + 1] && left < right) left++;
+                        while(nums[right] == nums[right - 1] && left < right) right--;
+                        left++;
+                        right--;
+                    }else if(sum > 0){
+                        left ++;
+                    }else {
+                        right--;
+                    }
+                }
+            }
+        }
+
+        return result;
+    }
+
+    
+
     public static void main(String[] args){
         System.out.println("Lets get this started!");
-        int[] arr = new int[]{11, 12, 15, 18, 2, 5, 6, 8};
+        int[] arr = new int[]{-1,0,1,2,-1,-4};
 
-        System.out.println(searchRotatedSortedArray(arr, 5)); 
+        System.out.println(threeSum(arr)); 
     }
 
 }
