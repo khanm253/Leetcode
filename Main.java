@@ -250,13 +250,29 @@ public class Main{
         return result;
     }
 
-    
+    //Greedy
+    public static int containerWithMostWater(int[] nums){ //O(N) and O(1)
+        int max = Integer.MIN_VALUE;
+        int left = 0;
+        int right = nums.length - 1;
+
+        while(left < right){
+            max = Math.max(max, Math.min(nums[left], nums[right])*(right - left));
+            if(nums[left] < nums[right]){
+                left++;
+            }else{
+                right--;
+            }
+        }
+
+        return max;
+    }
 
     public static void main(String[] args){
         System.out.println("Lets get this started!");
-        int[] arr = new int[]{-1,0,1,2,-1,-4};
+        int[] arr = new int[]{1,8,6,2,5,4,8,3,7};
 
-        System.out.println(threeSum(arr)); 
+        System.out.println(containerWithMostWater(arr)); 
     }
 
 }
