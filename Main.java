@@ -268,11 +268,22 @@ public class Main{
         return max;
     }
 
+    //Binary
+    public static int addTwoIntegers(int a, int b){
+        while(b != 0){
+            int tmp = (a & b) << 1;
+            a = a ^ b;
+            b = tmp;
+        }
+
+        return a;
+    }
+
     public static void main(String[] args){
         System.out.println("Lets get this started!");
         int[] arr = new int[]{1,8,6,2,5,4,8,3,7};
 
-        System.out.println(containerWithMostWater(arr)); 
+        System.out.println(addTwoIntegers(20, 30)); 
     }
 
 }
