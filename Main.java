@@ -279,11 +279,20 @@ public class Main{
         return a;
     }
 
+    public static int numberOfOneBits(int n){
+        int count = 0;
+        while(n!=0){
+            n = n & (n-1);
+            count++;
+        }
+        return count;
+    }
+
     public static void main(String[] args){
         System.out.println("Lets get this started!");
         int[] arr = new int[]{1,8,6,2,5,4,8,3,7};
 
-        System.out.println(addTwoIntegers(20, 30)); 
+        System.out.println(numberOfOneBits(3)); 
     }
 
 }
