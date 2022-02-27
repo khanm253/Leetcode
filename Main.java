@@ -288,11 +288,29 @@ public class Main{
         return count;
     }
 
+    public static int[] countingBits(int n){
+        int[] result = new int[n+1];
+        for(int i = 0; i <= n; i++){
+            int bits = numberOfOneBits(i);
+            result[i] = bits;
+        }
+        return result;
+    }
+
+    public static int[] countingBitsOptimal(int n){
+        int[] result  = new int[n + 1];
+        result[0] = 0;
+
+        for(int i = 1; i < n + 1; i++){
+            result[i] = i%2 + result[i/2];
+        }
+        return result;
+    }
     public static void main(String[] args){
         System.out.println("Lets get this started!");
         int[] arr = new int[]{1,8,6,2,5,4,8,3,7};
 
-        System.out.println(numberOfOneBits(3)); 
+        System.out.println(countingBitsOptimal(5)[3]); 
     }
 
 }
