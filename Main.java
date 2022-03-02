@@ -306,11 +306,30 @@ public class Main{
         }
         return result;
     }
+
+    //Gauss's formula O(N) and O(1)
+    public static int missingNumber(int[] nums) {
+        int sum = 0;
+        for(int i = 0; i < nums.length; i++){
+            sum += nums[i];
+        }
+
+        int n  = nums.length + 1;
+        int actual = (n * (n-1))/2;
+        
+        return actual - sum; 
+
+    }
+
+    public static int reverseBits(int n) {
+        int reverse = 0;
+        return reverse;
+    }
     public static void main(String[] args){
         System.out.println("Lets get this started!");
-        int[] arr = new int[]{1,8,6,2,5,4,8,3,7};
+        int[] arr = new int[]{0,1,3};
 
-        System.out.println(countingBitsOptimal(5)[3]); 
+        System.out.println(missingNumber(arr)); 
     }
 
 }
