@@ -323,13 +323,57 @@ public class Main{
 
     public static int reverseBits(int n) {
         int reverse = 0;
+        for(int i = 0; i< 32; i++){
+            reverse = reverse << 1;
+            reverse |= (n & 1);
+            n = n >> 1;
+        }
         return reverse;
     }
+
+    //Dynamic Programming 
+
+    public static int climbStairs(int n) {
+        int[] dp = new int[n+1];
+        dp[0] = 1;
+        dp[1] = 1;
+
+        for(int i = 2; i < n + 1; i++){
+            dp[i] = dp[i-1] + dp[i-2];
+        }
+
+        return dp[n];
+    }
+
+    public static int coinChange(int[] coins, int amount) {
+        int min = Integer.MAX_VALUE;
+        
+        int n = coins.length;
+        int m = amount;
+        int[][] dp = new int[n+1][m+1];
+
+        for(int i = 0; i < n+1; i++){
+            for(int j = 0; j < m+1; j++){
+                if(i==0 || j == 0){
+                    dp[i][j] = 0;
+                }
+            }
+        }
+
+        for(int i = 1; i < n+1; i++){
+            for(int j = 1; j < m+1; j++){
+                dp[i][j] = Math.min(dp[i][j], 1 + dp[i][j - coins[i]]);
+            }
+        }
+
+        return dp[n][m];
+    }
+
     public static void main(String[] args){
         System.out.println("Lets get this started!");
         int[] arr = new int[]{0,1,3};
 
-        System.out.println(missingNumber(arr)); 
+        System.out.println(climbStairs(2)); 
     }
 
 }
