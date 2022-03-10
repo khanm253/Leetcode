@@ -397,12 +397,33 @@ public class Main{
         return dp[n][m];
     }
 
-    //LIS
+    //LIS O(N^2) and O(N)
+    public static int LIS(int[] nums){
+        if(nums.length == 0) return 0;
+        
+        int n = nums.length;
+        int[] dp = new int[n];
+        Arrays.fill(dp, 0);
+
+        for(int i = 0; i < n; i++){
+            int max = Integer.MIN_VALUE;
+            for(int j = i; j >= 0; j--){
+                if(nums[j] < nums[i]){
+                    max = Math.max(max, 1 + dp[j]);
+                }
+            }
+            dp[i] = Math.max(1, max);
+        }
+
+        return dp[n-1];
+    }
+
+
     public static void main(String[] args){
         System.out.println("Lets get this started!");
-        int[] arr = new int[]{1,2,3};
+        int[] arr = new int[]{10,9,2,5,3,7,101,18};
 
-        System.out.println(maxWaysCoin(arr, 5)); 
+        System.out.println(LIS(arr)); 
     }
 
 }
