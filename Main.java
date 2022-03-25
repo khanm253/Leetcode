@@ -446,6 +446,10 @@ public class Main{
         return dp[n][m];
     }
 
+    public boolean wordBreak(String s, List<String> wordDict) {
+        return true;
+    }
+
     public static void main(String[] args){
         System.out.println("Lets get this started!");
         int[] arr = new int[]{10,9,2,5,3,7,101,18};
