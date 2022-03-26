@@ -1,5 +1,7 @@
 import java.util.*;
 
+import javax.print.DocFlavor.STRING;
+
 public class Main{
     
     //Arrays
@@ -446,8 +448,24 @@ public class Main{
         return dp[n][m];
     }
 
-    public boolean wordBreak(String s, List<String> wordDict) {
-        return true;
+    public static boolean wordBreak(String s, List<String> wordDict) {
+        int n = s.length();
+        boolean[] dp = new boolean[n + 1];
+        dp[0] = true; 
+        
+        for(int i = 0; i < n ; i++){
+            int j = i;
+            while(j >= 0){
+                String thisWord = s.substring(j, i + 1);
+                if(wordDict.contains(thisWord)){
+                    dp[i+1] = dp[j]; 
+                    System.out.println("returning: "+ thisWord);
+                    break;
+                }
+                j--;
+            }
+        }
+        return dp[n];
     }
 
     public static void main(String[] args){
@@ -455,6 +473,14 @@ public class Main{
         int[] arr = new int[]{10,9,2,5,3,7,101,18};
 
         System.out.println(LCS("banana", "hbanana")); 
+        String str = "abdullah";
+        List<String> wordsDict = new ArrayList<>();
+        wordsDict.add("cats");
+        wordsDict.add("dog");
+        wordsDict.add("and");
+        wordsDict.add("sand");
+
+        System.out.println(wordBreak("catsanddog", wordsDict));
     }
 
 }
