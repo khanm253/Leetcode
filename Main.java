@@ -469,23 +469,29 @@ public class Main{
         return dp[n];
     }
 
+    //O(N*target) and O(target) 
     public static int combinationSum4(int[] nums, int target) {
-        return 0;
+        int[] dp = new int[target + 1];
+        dp[0] = 1;
+
+        for(int i = 1; i <= target; i++){
+            int sum = 0;
+            for(int num: nums){
+                if(num <= i){
+                    sum += dp[i - num];
+                }
+            }
+            dp[i] = sum;
+        }
+
+        return dp[target];
     }
-    
+
     public static void main(String[] args){
         System.out.println("Lets get this started!");
-        int[] arr = new int[]{10,9,2,5,3,7,101,18};
+        int[] arr = new int[]{9};
 
-        System.out.println(LCS("banana", "hbanana")); 
-        String str = "abdullah";
-        List<String> wordsDict = new ArrayList<>();
-        wordsDict.add("cats");
-        wordsDict.add("dog");
-        wordsDict.add("and");
-        wordsDict.add("sand");
-
-        System.out.println(wordBreak("catsanddog", wordsDict));
+        System.out.println(combinationSum4(arr, 3));
     }
 
 }
