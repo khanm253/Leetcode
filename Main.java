@@ -448,6 +448,7 @@ public class Main{
         return dp[n][m];
     }
 
+    //O(N^2) and O(N)
     public static boolean wordBreak(String s, List<String> wordDict) {
         int n = s.length();
         boolean[] dp = new boolean[n + 1];
@@ -468,6 +469,10 @@ public class Main{
         return dp[n];
     }
 
+    public static int combinationSum4(int[] nums, int target) {
+        return 0;
+    }
+    
     public static void main(String[] args){
         System.out.println("Lets get this started!");
         int[] arr = new int[]{10,9,2,5,3,7,101,18};
