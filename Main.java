@@ -487,11 +487,25 @@ public class Main{
         return dp[target];
     }
 
+    // O(N) and O(N)
+    public static int houseRobber(int[] nums){
+        int n = nums.length;
+        int[] dp = new int[n];
+        dp[0] = nums[0];
+        dp[1] = nums[1];
+
+        for(int i = 2; i < n; i++){
+            dp[i] = Math.max(dp[i - 2] + nums[i], dp[i - 1]);
+        }
+
+        return dp[n - 1];
+    }
+
     public static void main(String[] args){
         System.out.println("Lets get this started!");
-        int[] arr = new int[]{9};
+        int[] arr = {1, 2, 3, 1};
 
-        System.out.println(combinationSum4(arr, 3));
+        System.out.println(houseRobber(arr));
     }
 
 }
